@@ -1,0 +1,10 @@
+version: "3"
+services:
+  db:
+    build: ./db
+    ports:
+      - 8081:5432
+    environment: 
+      - PGDATA=${DB_PGDATA}
+      - POSTGRES_DB=${DB_POSTGRES_DB}
+      - POSTGRES_PASSWORD=${DB_POSTGRES_PASSWORD}

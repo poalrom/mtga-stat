@@ -1,0 +1,1 @@
+psql -U postgres -d mtga -1 -f /mtga.sql

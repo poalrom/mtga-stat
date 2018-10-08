@@ -1,0 +1,35 @@
+{
+  "name": "mtga",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "bin": "src/bin/commands.ts",
+  "scripts": {
+    "parse-top": "ts-node src/bin/commands.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cheerio": "^0.22.9",
+    "@types/commander": "^2.12.2",
+    "@types/node": "^10.11.4",
+    "@types/ramda": "^0.25.39",
+    "@types/request": "^2.47.1",
+    "@types/request-promise-native": "^1.0.15",
+    "@types/winston": "^2.4.4",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.1.1"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "commander": "^2.18.0",
+    "pg": "^7.5.0",
+    "ramda": "^0.25.0",
+    "reflect-metadata": "^0.1.12",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5",
+    "typeorm": "^0.2.7",
+    "winston": "^3.1.0"
+  }
+}
