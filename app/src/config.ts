@@ -1,7 +1,8 @@
 import "reflect-metadata";
-import { createConnection } from 'typeorm';
+import { createConnection, getConnection } from 'typeorm';
 import { Archetype } from './entities/Archetype';
 import * as winston from 'winston';
+import { Deck } from "./entities/Deck";
 
 export const BASE_URL = 'https://mtgdecks.net';
 export const logger = winston.createLogger({
@@ -25,11 +26,15 @@ export async function init() {
             password: "mtga",
             database: "mtga",
             entities: [
-                Archetype
+                Archetype,
+                Deck
             ]
         });
     } catch (error) {
-        throw error;
+        logger.error('[DB] Connection error');
+        logger.error(error);
         process.exit(1);
     }
 }
+
+export const connection = () => getConnection().manager;

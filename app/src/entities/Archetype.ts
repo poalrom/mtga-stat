@@ -1,5 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, PrimaryColumn, Column, getConnection } from 'typeorm';
-import { logger } from '../config';
+import { Entity, PrimaryGeneratedColumn, PrimaryColumn, Column } from 'typeorm';
+import { logger, connection } from '../config';
 
 @Entity()
 export class Archetype {
@@ -13,13 +13,22 @@ export class Archetype {
     @PrimaryColumn()
     slug: string;
 
+    @Column('float')
+    meta_part: number;
+
     async upsert() {
-        const connection = getConnection().manager;
-        const item = await connection.findOne(Archetype, { slug: this.slug });
+        const item = await connection().findOne(Archetype, { slug: this.slug });
 
         if (item) {
             logger.debug(`[Archetype] Update`, item, this);
-            await connection.update(Archetype, { slug: this.slug }, { title: this.title });
+            await connection().update(
+                Archetype,
+                { slug: this.slug },
+                {
+                    title: this.title,
+                    meta_part: this.meta_part
+                }
+            );
             logger.debug(`[Archetype] Success update`, item, this);
         } else {
             await this.save();
@@ -29,7 +38,7 @@ export class Archetype {
     async save() {
         logger.debug(`[Archetype] Save`, this);
         try {
-            const data = await getConnection().manager.save(this);
+            const data = await connection().save(this);
 
             logger.debug(`[Archetype] Success save`, this);
 

@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "bin": "src/bin/commands.ts",
   "scripts": {
-    "parse-top": "ts-node src/bin/commands.ts",
+    "bin": "ts-node src/bin/commands.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
